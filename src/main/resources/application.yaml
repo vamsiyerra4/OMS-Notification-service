@@ -1,6 +1,21 @@
 spring:
   application:
     name: notification-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.trusted.packages: "com.orderms.order_service.event"
+#        spring.json.type.mapping: "com.orderms.order_service.event.OrderPlacedEvent:com.orderms.notification_service.event.OrderPlacedEvent"
+        spring.json.value.default.type: "com.orderms.notification_service.event.OrderPlacedEvent"
+
 server:
   port: 8085
 
