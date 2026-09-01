@@ -18,8 +18,12 @@ public class OrderEventConsumer {
         log.info("Order Placed Event Received - Order Id : {}, user Id : {}, product Id : {}, status: {}, timestamp: {}",
                 event.orderId(), event.userId(), event.productId(), event.status(), event.timeStamp());
 
+
+
         // Simulated notification — real email/SMS integration comes later
         log.info("Email sent to user {} for order {}", event.userId(), event.orderId());
+
+//        throw new RuntimeException("Test DLT");
 
     }
 }
